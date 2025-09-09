@@ -17,7 +17,7 @@ interface Project {
 const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(true) // Start with true for mobile compatibility
   const sectionRef = useRef<HTMLElement>(null)
 
   const projects: Project[] = [
@@ -115,20 +115,33 @@ const Projects: React.FC = () => {
     : projects.filter(project => project.category === selectedCategory)
 
   useEffect(() => {
+    // Fallback timeout to ensure visibility on mobile devices
+    const fallbackTimer = setTimeout(() => {
+      setIsVisible(true)
+    }, 500)
+
+    // Intersection Observer with mobile-friendly settings
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
+          clearTimeout(fallbackTimer)
         }
       },
-      { threshold: 0.3 }
+      { 
+        threshold: 0.1, // Lower threshold for mobile
+        rootMargin: '50px' // Trigger earlier
+      }
     )
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current)
     }
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      clearTimeout(fallbackTimer)
+    }
   }, [])
 
   return (
@@ -168,9 +181,7 @@ const Projects: React.FC = () => {
           {filteredProjects.map((project, index) => (
             <div 
               key={project.id} 
-              className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group opacity-100 translate-y-0"
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="relative overflow-hidden">

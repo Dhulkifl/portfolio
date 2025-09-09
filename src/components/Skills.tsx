@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const Skills: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Start with true for mobile compatibility
   const sectionRef = useRef<HTMLElement>(null);
 
   const skillCategories = [
