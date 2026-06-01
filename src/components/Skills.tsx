@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const Skills: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false); // Start with true for mobile compa
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   const skillCategories = [
     {
-      title: "Backend",
-      icon: "🔧",
-      color: "blue",
+      title: "Backend Core",
+      icon: "construction",
+      color: "from-blue-500 to-indigo-500",
+      glowColor: "glow-card-blue",
       skills: [
         { name: "PHP", level: 90 },
         { name: "Laravel", level: 88 },
@@ -18,38 +19,40 @@ const Skills: React.FC = () => {
       ],
     },
     {
-      title: "Frontend",
-      icon: "⚛️",
-      color: "green",
+      title: "Frontend Engineering",
+      icon: "code",
+      color: "from-indigo-500 to-purple-500",
+      glowColor: "glow-card-purple",
       skills: [
-        { name: "JavaScript", level: 85 },
-        { name: "React", level: 82 },
-        { name: "Next.js", level: 70 },
+        { name: "JavaScript (ES6)", level: 85 },
+        { name: "Vue", level: 82 },
         { name: "jQuery", level: 80 },
         { name: "TailwindCSS", level: 85 },
       ],
     },
     {
-      title: "Mobile",
-      icon: "📱",
-      color: "purple",
+      title: "Mobile Architecture",
+      icon: "phone_android",
+      color: "from-purple-500 to-pink-500",
+      glowColor: "glow-card-pink",
       skills: [
-        { name: "Android Studio", level: 85 },
+        { name: "Android SDK (Java)", level: 88 },
         { name: "Flutter", level: 80 },
         { name: "Dart", level: 80 },
-        { name: "Java (Android)", level: 88 },
-        { name: "XML", level: 75 },
+        { name: "Android Studio", level: 85 },
+        { name: "XML Layouts", level: 75 },
       ],
     },
     {
-      title: "Database & Tools",
-      icon: "🛠️",
-      color: "orange",
+      title: "Databases & DevOps",
+      icon: "settings",
+      color: "from-blue-500 to-teal-500",
+      glowColor: "glow-card-blue",
       skills: [
         { name: "MySQL", level: 88 },
         { name: "SQLite", level: 85 },
-        { name: "Git", level: 80 },
-        { name: "REST API", level: 75 },
+        { name: "Git & Versioning", level: 80 },
+        { name: "REST API Integration", level: 75 },
       ],
     },
   ];
@@ -61,7 +64,7 @@ const Skills: React.FC = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -75,65 +78,56 @@ const Skills: React.FC = () => {
     <section
       ref={sectionRef}
       id="skills"
-      className="py-20 bg-white dark:bg-gray-900 transition-colors duration-500"
+      className="py-12 bg-gray-50 dark:bg-gray-950 transition-colors duration-500 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Decorative layout background glows */}
+      <div className="absolute bottom-[-10%] left-[-10%] w-[350px] h-[350px] bg-blue-500/5 dark:bg-blue-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Skills & Technologies
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-4">
+            Skills & <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent">Expertise</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            A comprehensive overview of my technical expertise and proficiency
-            levels
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 mx-auto mb-6 rounded-full"></div>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            A comprehensive overview of my core domains and professional software engineering competencies.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 mb-20">
           {skillCategories.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
-              className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-              style={{ transitionDelay: `${categoryIndex * 150}ms` }}
+              className={`glass-panel rounded-lg p-6 shadow-md border border-gray-200/50 dark:border-gray-800/80 transition-all duration-500 transform hover:-translate-y-1.5 ${category.glowColor} ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+              style={{ transitionDelay: `${categoryIndex * 100}ms` }}
             >
-              <div className="text-center mb-6">
-                <div className="text-4xl mb-3">{category.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+              <div className="flex items-center gap-3.5 mb-6">
+                <div className="w-11 h-11 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/40 flex items-center justify-center shadow-sm">
+                  <span className="material-icons-outlined text-indigo-500 text-xl">{category.icon}</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                   {category.title}
                 </h3>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-4.5">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex} className="group">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <div className="flex justify-between items-center mb-1.5">
+                      <span className="text-xs font-bold text-gray-700 dark:text-gray-300 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors">
                         {skill.name}
                       </span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400 font-semibold">
+                      <span className="text-xs text-gray-400 dark:text-gray-500 font-bold">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                    <div className="w-full bg-gray-200/50 dark:bg-gray-800/60 rounded-full h-1.5 overflow-hidden">
                       <div
-                        className={`h-2 rounded-full transition-all duration-1000 ease-out bg-gradient-to-r ${
-                          category.color === "blue"
-                            ? "from-blue-500 to-blue-600"
-                            : category.color === "green"
-                            ? "from-green-500 to-green-600"
-                            : category.color === "purple"
-                            ? "from-purple-500 to-purple-600"
-                            : "from-orange-500 to-orange-600"
-                        }`}
+                        className={`h-1.5 rounded-full transition-all duration-1200 ease-out bg-gradient-to-r ${category.color}`}
                         style={{
                           width: isVisible ? `${skill.level}%` : "0%",
-                          transitionDelay: `${
-                            categoryIndex * 150 + skillIndex * 100
-                          }ms`,
+                          transitionDelay: `${categoryIndex * 100 + skillIndex * 80}ms`,
                         }}
                       ></div>
                     </div>
@@ -144,43 +138,24 @@ const Skills: React.FC = () => {
           ))}
         </div>
 
+        {/* Global Tech tags */}
         <div className="text-center">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
-            Technologies I Work With
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-8">
+            Complete Technology Inventory
           </h3>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2.5 max-w-4xl mx-auto">
             {[
-              { name: "PHP", color: "purple" },
-              { name: "Laravel", color: "red" },
-              { name: "JavaScript", color: "yellow" },
-              { name: "React", color: "cyan" },
-              { name: "Next.js", color: "gray" },
-              { name: "jQuery", color: "blue" },
-              { name: "Python", color: "blue" },
-              { name: "Java", color: "orange" },
-              { name: "C++", color: "blue" },
-              { name: "TailwindCSS", color: "cyan" },
-              { name: "Flutter", color: "blue" },
-              { name: "Dart", color: "blue" },
-              { name: "Android Studio", color: "green" },
-              { name: "MySQL", color: "blue" },
-              { name: "SQLite", color: "gray" },
-              { name: "Git", color: "red" },
-              { name: "REST APIs", color: "green" },
-              { name: "XML", color: "orange" },
-            ].map((tech, index) => (
+              "PHP", "Laravel", "JavaScript", "Vue", "jQuery",
+              "Python", "Java", "C++", "TailwindCSS", "Flutter", "Dart",
+              "Android Studio", "MySQL", "SQLite", "Git", "REST APIs", "XML Layouts"
+            ].map((techName, index) => (
               <span
                 key={index}
-                className={`bg-white dark:bg-gray-800 px-4 py-2 rounded-full text-gray-700 dark:text-gray-300 font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-default transform hover:-translate-y-1 border border-gray-200 dark:border-gray-600 hover:border-${
-                  tech.color
-                }-400 dark:hover:border-${tech.color}-400 ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-4"
-                }`}
-                style={{ transitionDelay: `${index * 50}ms` }}
+                className={`bg-white dark:bg-gray-900 px-4 py-2 rounded-2xl text-xs font-bold text-gray-700 dark:text-gray-300 shadow-sm border border-gray-250/40 dark:border-gray-800/80 hover:border-indigo-400 dark:hover:border-indigo-600 transition-all duration-300 cursor-default hover:text-indigo-600 dark:hover:text-indigo-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
+                style={{ transitionDelay: `${index * 30}ms` }}
               >
-                {tech.name}
+                {techName}
               </span>
             ))}
           </div>
@@ -191,3 +166,4 @@ const Skills: React.FC = () => {
 };
 
 export default Skills;
+

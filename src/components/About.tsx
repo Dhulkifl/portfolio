@@ -4,101 +4,104 @@ const About: React.FC = () => {
   return (
     <section
       id="about"
-      className="py-20 bg-gray-50 dark:bg-gray-800/50 transition-colors duration-500"
+      className="py-8 bg-white dark:bg-gray-900 transition-colors duration-500 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Decorative gradient overlay */}
+      <div className="absolute top-[-10%] right-[-10%] w-[300px] h-[300px] bg-indigo-500/5 dark:bg-indigo-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            About Me
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-4">
+            About <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 bg-clip-text text-transparent">Me</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Passionate developer with a love for creating innovative solutions
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 mx-auto mb-6 rounded-full"></div>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            A software engineer building clean, reliable backend architectures and engaging frontends.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-6">
-            <div className="prose prose-lg dark:prose-invert">
-              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                I'm a software developer currently working at{" "}
-                <span className="font-semibold text-blue-600 dark:text-blue-400">
-                  Ertibat Technology
-                </span>{" "}
-                in Kabul, Afghanistan. My journey started with a curiosity about
-                how devices such as computers and phones work, and it has
-                evolved into a passion for creating scalable, user-friendly
-                applications that solve real-world problems.
-              </p>
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7 space-y-6">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              Building Web & Mobile Systems
+            </h3>
+            <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              I'm a software developer working at{" "}
+              <span className="font-bold text-indigo-600 dark:text-indigo-400">
+                Ertibat Technology
+              </span>{" "}
+              in Kabul, Afghanistan. What started as pure curiosity about how computers and operating systems run has grown into a career crafting user-centric products.
+            </p>
 
-              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                I specialize in{" "}
-                <span className="font-semibold text-red-600 dark:text-red-400">
-                  PHP (Laravel)
-                </span>
-                ,{" "}
-                <span className="font-semibold text-blue-600 dark:text-blue-400">
-                  JavaScript (React & jQuery)
-                </span>
-                , and mobile development using{" "}
-                <span className="font-semibold text-purple-600 dark:text-purple-400">
-                  Java, Flutter (Dart), and Android Studio
-                </span>
-                . I believe in writing clean, maintainable code and following
-                best practices to deliver high-quality software.
-              </p>
+            <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              I specialize in{" "}
+              <span className="font-semibold text-gray-900 dark:text-white">Laravel (PHP)</span>,{" "}
+              <span className="font-semibold text-gray-900 dark:text-white">Vue.js</span>, and mobile application frameworks like{" "}
+              <span className="font-semibold text-gray-900 dark:text-white">Java & Flutter</span>. I prioritize maintainability, clean code structure, and modern design standards.
+            </p>
 
-              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                My experience includes participating in the full software
-                development lifecycle, from requirements gathering and design to
-                coding, testing, and deployment. I enjoy solving technical
-                challenges and implementing innovative solutions to optimize
-                software performance and enhance user experience.
-              </p>
+            <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              From design drafts and API specifications to production deployment, I focus on delivering optimal performance and robust codebase hygiene.
+            </p>
+
+            {/* Quick Stats Grid */}
+            <div className="grid grid-cols-3 gap-4 pt-6">
+              {[
+                { label: "Laravel Apps", val: "10+" },
+                { label: "Mobile Apps", val: "5+" },
+                { label: "API Integrations", val: "5+" },
+              ].map((stat, i) => (
+                <div key={i} className="glass-panel p-4 rounded-2xl text-center border border-gray-200 dark:border-gray-800">
+                  <div className="text-2xl md:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-1">{stat.val}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="relative">
-            <div className="bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-3xl p-8 text-white shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-                <h3 className="text-2xl font-bold mb-6 flex items-center">
-                  <span className="mr-3">💻</span>
-                  What I Do
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    {
-                      text: "Backend Development (PHP(Laravel), MySQL, SQLite)",
-                      icon: "🔧",
-                    },
-                    {
-                      text: "Frontend Development (React, Next.js, Tailwind)",
-                      icon: "⚛️",
-                    },
-                    {
-                      text: "Android Development (Java, XML, Flutter)",
-                      icon: "📱",
-                    },
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center space-x-3 group"
-                    >
-                      <div className="text-xl group-hover:scale-110 transition-transform duration-300">
-                        {item.icon}
-                      </div>
-                      <span className="text-white/90 group-hover:text-white transition-colors duration-300">
-                        {item.text}
-                      </span>
+          <div className="lg:col-span-5 relative">
+            <div className="glass-panel rounded-3xl p-8 shadow-xl border border-indigo-100/50 dark:border-indigo-900/30 glow-card-indigo group transition-all duration-300 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2.5">
+                <span className="material-icons-outlined text-indigo-500 text-2xl">computer</span>
+                Tech Domains
+              </h3>
+
+              <div className="space-y-5">
+                {[
+                  {
+                    title: "Backend Development",
+                    desc: "Laravel Framework, Laravel Sanctum, MySQL, SQLite Database structures.",
+                    icon: "construction",
+                  },
+                  {
+                    title: "Frontend Engineering",
+                    desc: "Vue, Nuxt.js, jQuery, Tailwind CSS responsive styling.",
+                    icon: "code",
+                  },
+                  {
+                    title: "Mobile Development",
+                    desc: "Native Java (Android Studio SDK), Flutter framework & Dart API clients.",
+                    icon: "phone_android",
+                  },
+                ].map((item, index) => (
+                  <div key={index} className="flex gap-4 group/item">
+                    <div className="w-10 h-10 shrink-0 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/40 flex items-center justify-center text-lg shadow-sm group-hover/item:scale-105 transition-transform duration-300">
+                      <span className="material-icons-outlined text-indigo-500 text-xl">{item.icon}</span>
                     </div>
-                  ))}
-                </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 dark:text-white group-hover/item:text-indigo-500 dark:group-hover/item:text-indigo-450 transition-colors duration-300 text-sm">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-
-            {/* Floating elements */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400/20 rounded-full blur-xl animate-pulse"></div>
-            <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-pink-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
           </div>
         </div>
       </div>
@@ -107,3 +110,4 @@ const About: React.FC = () => {
 };
 
 export default About;
+
